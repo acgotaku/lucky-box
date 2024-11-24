@@ -31,9 +31,6 @@ jobs:
           node-version: 22.11.0
           cache: 'pnpm'
 
-      - name: Add auth
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PACKAGE_READ }}" >> .npmrc
-
       - name: Install deps
         run: pnpm install
 
@@ -56,11 +53,8 @@ jobs:
       - name: Set node version
         uses: actions/setup-node@v4
         with:
-          node-version: 20.11.1
+          node-version: 22.11.0
           cache: 'pnpm'
-
-      - name: Add auth
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PACKAGE_READ }}" >> .npmrc
 
       - name: Install deps
         run: pnpm install
