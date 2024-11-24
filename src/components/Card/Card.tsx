@@ -5,13 +5,17 @@ import styles from './card.module.css';
 
 interface CardProps {
   number?: string;
+  className?: string;
 }
 
-const Card: React.FC<CardProps> = ({ number }) => {
+const Card: React.FC<CardProps> = ({ number, className = '' }) => {
   const [flip, setFlip] = useState(false);
 
   return (
-    <div className={styles.card} onClick={() => setFlip(flip => !flip)}>
+    <div
+      className={cls(styles.card, className)}
+      onClick={() => setFlip(flip => !flip)}
+    >
       <div className={cls(styles.inner, flip && styles.flip)}>
         <picture className={cls(styles.face, styles.front)}>
           <img src={icon} className={styles.img} />

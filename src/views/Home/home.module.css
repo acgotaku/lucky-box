@@ -4,7 +4,38 @@
 }
 
 .title {
-  padding: 16px;
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-semi-bold);
+  text-align: center;
+  font-size: 24px;
+}
+
+.intro {
+  max-width: var(--width-main);
+  margin: 16px auto;
+}
+
+.desc {
+  margin: 8px 0;
+}
+
+.textarea {
+  min-height: 80px;
+}
+
+.actions {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+
+  &Title {
+    text-align: center;
+    font-size: 24px;
+  }
 }
