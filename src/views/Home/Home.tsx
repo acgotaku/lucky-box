@@ -1,7 +1,18 @@
 import { useCallback, useState } from 'react';
-import { Button, TextArea } from '@radix-ui/themes';
+import { Button, Dialog, Flex, TextArea } from '@radix-ui/themes';
 import { Card } from '@/components';
 import styles from './home.module.css';
+
+function shuffleArray(array: string[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    // Generate a random index from 0 to i
+    const j = Math.floor(Math.random() * (i + 1));
+
+    // Swap elements at indices i and j
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 const HomeView = () => {
   const [rawNumbers, setRawNumbers] = useState<string>('');
@@ -12,9 +23,14 @@ const HomeView = () => {
       .split(' ')
       .map(x => x.trim())
       .filter(x => x);
-    const nums = numbers.sort(() => 0.5 - Math.random());
-    setNums(nums);
+
+    setNums(shuffleArray(numbers));
   }, [rawNumbers, setNums]);
+
+  const resetNumbers = useCallback(() => {
+    setRawNumbers('');
+    setNums([]);
+  }, [setNums]);
 
   return (
     <div className={styles.home}>
@@ -32,7 +48,24 @@ const HomeView = () => {
           <Button size="3" onClick={saveNumbers}>
             抽选
           </Button>
-          <Button size="3">重置</Button>
+          <Dialog.Root>
+            <Dialog.Trigger>
+              <Button size="3">重置</Button>
+            </Dialog.Trigger>
+            <Dialog.Content className={styles.dialog}>
+              <p>确定要重置抽选号码么？</p>
+              <Flex gap="3" mt="4" justify="end">
+                <Dialog.Close>
+                  <Button variant="soft" color="gray">
+                    取消
+                  </Button>
+                </Dialog.Close>
+                <Dialog.Close>
+                  <Button onClick={resetNumbers}>确定</Button>
+                </Dialog.Close>
+              </Flex>
+            </Dialog.Content>
+          </Dialog.Root>
         </div>
       </div>
       {nums.length > 0 && (
