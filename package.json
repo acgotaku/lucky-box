@@ -12,6 +12,7 @@
     "format": "prettier --write --list-different \"./**/*.{js,jsx,ts,tsx,css,md,json,yaml}\" "
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "i18next": "^23.10.1",
     "mobx": "^6.13.1",
     "mobx-react-lite": "^4.0.7",
