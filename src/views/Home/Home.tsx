@@ -19,6 +19,10 @@ const HomeView = () => {
   const [nums, setNums] = useState<string[]>([]);
 
   const saveNumbers = useCallback(() => {
+    if (rawNumbers.trim() === '') {
+      window.alert('请输入抽选号码~');
+      return;
+    }
     const numbers = rawNumbers
       .split(' ')
       .map(x => x.trim())
